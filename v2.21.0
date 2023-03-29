@@ -22,3 +22,5 @@ docker rmi registry.aliyuncs.com/google_containers/coredns:1.6.5
 
 - 安全组开放
 k8s etcd api kubelet kube-ovn 依赖端口一般都在2000-11000之间，ipv4 允许访入这些端口即可
+
+最好还是开放ipv4 v6所有协议所有端口
