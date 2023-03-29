@@ -1,0 +1,21 @@
+- 最好先安装好最新python3，目前3.11.2，最好使用python3虚拟环境，否则无法安装kubespray依赖（requirements.txt）
+- 存在一些镜像是基于Centos定制的，但是发行系统名改掉了，这里可以直接将CentOS或者federa更名为你的镜像名
+- 基于github下载的二进制存在重复下载，可以考虑在all.yaml使用缓存模式
+- pause等容器镜像拉取往往都有问题，可以考虑使用国内免费代理
+``` bash
+# k8s依赖国内代理
+
+registry.k8s.io  --> registry.lank8s.cn
+k8s.gcr.io --> lank8s.cn
+gcr.io --> gcr.lank8s.cn
+
+
+## k8s ali代理
+k8s.gcr.io --> registry.aliyuncs.com/google_containers
+k8s.gcr.io/coredns:1.6.5 == registry.aliyuncs.com/google_containers/coredns:1.6.5
+
+docker pull registry.aliyuncs.com/google_containers/coredns:1.6.5
+docker tag registry.aliyuncs.com/google_containers/coredns:1.6.5 k8s.gcr.io/coredns:1.6.5
+docker rmi registry.aliyuncs.com/google_containers/coredns:1.6.5
+```
+- multus的安装有问题，可以考虑手动安装，将multus的安装代码删掉
